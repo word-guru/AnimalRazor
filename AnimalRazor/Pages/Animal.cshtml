@@ -1,0 +1,28 @@
+﻿@page 
+@using AnimalRazor.Models
+@model AnimalRazor.Pages.AnimalModel
+@{
+    ViewData["Title"] = "Animals";
+
+}
+
+<div class="text-centr">
+    <h1 class="display-4">Animals</h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Sound</th>
+        </tr>
+    </thead>
+  
+        @foreach (var item in Model.animals)
+        {
+          <tr>
+            <td>@item.GetType()</td>
+            <td>@item.GetSound()</td>
+          </tr>
+        }    
+    
+</table>
