@@ -5,34 +5,32 @@ namespace AnimalRazor.Repozitorys
 {
     public class AnimalRepozitory : IAnimal
     {
-        private readonly List<Animal> animals;
+        private readonly IEnumerable<IModel> _model;
+        private List<string> read;
 
-        public AnimalRepozitory()
+        public AnimalRepozitory(IEnumerable<IModel> model)
         {
-            animals = new List<Animal>();
-            Cats cats = new Cats();
-            Dogs dogs = new Dogs();
-            animals.Add(dogs);
-            animals.Add(cats);
-              
+            _model = model;             
         }
 
-        public List<Animal> GetAnimals() => animals;
-        
-        
-        public void WriteFile()
+        public List<IModel> GetAnimals()
         {
-            string path = "App_Data/Animal.txt";
+            return _model.ToList();
+        }
 
-            using (StreamWriter writer = new StreamWriter(path, true))
+        public void SaveFile(string path = "App_Data/Animal.txt")
+        {
+            string _path = path;
+
+            using (StreamWriter writer = new StreamWriter(_path, false))
             {
-                foreach (Animal animal in animals)
+                foreach (var animal in _model)
                 {
                     writer.Write($"{animal.GetType()} ");
                     writer.WriteLine(animal.GetSound());
                 }
             }
         }
-
+ 
     }
 }

@@ -1,8 +1,18 @@
-﻿namespace AnimalRazor.Models
+﻿using AnimalRazor.Repozitorys.Interfaces;
+
+namespace AnimalRazor.Models
 {
-    public class Dogs : Animal
+    public class Dogs : IModel
     {
-        public override string GetSound() => "gav-gav";
-        public override string GetType() => "dog";
+        public string TypeAnimal { get; set; } = "Собака";
+        public string Sound { get; set; } = "Гав-гав";
+
+        /*Dogs() 
+        {
+            TypeAnimal = "Собака";
+            Sound = "Гав-гав";
+        }*/
+        public string GetSound() => Sound;
+        public string GetType() => TypeAnimal;
     }
 }

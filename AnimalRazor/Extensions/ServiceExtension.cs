@@ -1,4 +1,5 @@
-﻿using AnimalRazor.Repozitorys;
+﻿using AnimalRazor.Models;
+using AnimalRazor.Repozitorys;
 using AnimalRazor.Repozitorys.Interfaces;
 
 namespace AnimalRazor.Extensions
@@ -7,8 +8,11 @@ namespace AnimalRazor.Extensions
     {
         public static void RegisterRepos(this IServiceCollection collection)
         {
+            collection.AddTransient<IModel, Cats>();
+            collection.AddTransient<IModel, Dogs>();
             collection.AddTransient<IAnimal, AnimalRepozitory>();
-           
+            //collection.AddTransient<AnimalRepozitory>();
+
         }
     }
 }

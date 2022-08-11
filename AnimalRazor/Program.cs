@@ -1,12 +1,16 @@
 using AnimalRazor.Extensions;
+using AnimalRazor.Models;
+using AnimalRazor.Repozitorys.Interfaces;
+using AnimalRazor.Repozitorys;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterRepos();
-// Add services to the container.
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+//app.UseMiddleware<AnimalRepozitory>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
