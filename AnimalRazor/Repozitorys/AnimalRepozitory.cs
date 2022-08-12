@@ -6,11 +6,11 @@ namespace AnimalRazor.Repozitorys
     public class AnimalRepozitory : IAnimal
     {
         private readonly IEnumerable<IModel> _model;
-        private List<string> read;
+        private List<string> read { get; set; }
 
         public AnimalRepozitory(IEnumerable<IModel> model)
         {
-            _model = model;             
+            _model = model;
         }
 
         public List<IModel> GetAnimals()
@@ -31,6 +31,20 @@ namespace AnimalRazor.Repozitorys
                 }
             }
         }
- 
+
+        public List<string> ReadFile()
+        {          
+            string path = "App_Data/AnimalRead.txt";
+            read = new List<string>();
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string? line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    read.Add(line);
+                }
+            }
+            return read;
+        }
     }
 }

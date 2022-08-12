@@ -6,5 +6,6 @@ namespace AnimalRazor.Repozitorys.Interfaces
     {
         List<IModel> GetAnimals();
         void SaveFile(string path);
+        List<string> ReadFile();
     }
 }
